@@ -9,6 +9,8 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 800
 
+#define MAX_BODIES 10000
+
 typedef struct {
   int size;
   float mass;
@@ -79,7 +81,7 @@ int main(int argc, char **argv) {
   SetTargetFPS(60);
 
   const Vector2 screen_center = {(float)SCREEN_WIDTH / 2, (float)SCREEN_HEIGHT / 2};
-  Body bodies[] = {
+  Body bodies[MAX_BODIES] = {
     // size, mass, pos, vel, color
     {14, 10000, screen_center, {0, 0}, YELLOW}, // sun
     {4, 8, Vector2Subtract(screen_center, (Vector2){80, 0}), {0, 65}, RED},
@@ -88,7 +90,7 @@ int main(int argc, char **argv) {
     {9, 400, Vector2Subtract(screen_center, (Vector2){0, 180}), {-60, 0}, BLUE},
     {2, 3, Vector2Subtract(screen_center, (Vector2){20, 180}), {-60, 30}, MAGENTA},
   };
-  int body_count = sizeof(bodies) / sizeof(bodies[0]);
+  int body_count = 6;
 
   while (!WindowShouldClose()) {
     /// LOGIC
